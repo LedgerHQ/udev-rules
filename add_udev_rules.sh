@@ -1,5 +1,16 @@
 #!/bin/bash
 cat <<EOF > /etc/udev/rules.d/20-hw1.rules
+# Ledger device udev rules
+#
+# You may need to place this file in /etc/udev/rules.d/ and then run
+# `udevadm control --reload` to enable non-root access to Ledger USB devices.
+#
+# Product identifiers are built using a 1-byte prefix corresponding to the device
+# then 3-bytes to identify which USB interface are activated by current device
+# application. For example "5011" corresponds to Nano S Plus with only WebUSB
+# activated.
+# Legacy product identifiers are "000[1-5]".
+
 # HW.1 / Nano
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="2581", ATTRS{idProduct}=="1b7c|2b7c|3b7c|4b7c", TAG+="uaccess", TAG+="udev-acl"
 # Blue
